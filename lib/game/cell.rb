@@ -2,10 +2,10 @@ class Cell
   attr_accessor :value
 
   def initialize
-    @value = " "
+    @value = "   "
   end
 
   def occupied?
-    @value != " "
+    @value != "   "
   end
 end
