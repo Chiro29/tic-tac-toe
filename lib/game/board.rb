@@ -46,4 +46,11 @@ class Board
   def winner(symbol, row, column)
     check_column?(symbol, column) || check_row?(symbol, row) || check_diagonal1?(symbol) ||check_diagonal2?(symbol)
   end
+
+  def display_board
+    @grid.each do |row|
+      puts row.map {|cell| cell.value}.join "|"
+      puts "------" unless row == @grid.last
+    end
+  end
 end
