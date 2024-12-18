@@ -1,11 +1,13 @@
 require_relative 'board'
 
 class Player
-  attr_reader :player, :symbol
+  attr_reader :player, :symbol, :row, :col
 
   def initialize(player, symbol)
     @player = player
     @symbol = symbol
+    @row = ""
+    @col = ""
   end
 
   def make_move(board)
@@ -15,24 +17,24 @@ class Player
       input = gets.chomp.strip
 
       begin
-        row, col = input.split(",")
+        @row, @col = input.split(",")
 
-        if row.nil? || col.nil?
+        if @row.nil? || @col.nil?
           raise ArgumentError, "Invalid input: please use the format 'row,column' (e.g., 1,2)"
         end
 
-        if row !~ /\A\d+\z/ || col !~ /\A\d+\z/ 
+        if @row !~ /\A\d+\z/ || @col !~ /\A\d+\z/ 
           raise ArgumentError, "Invalid input: row and column must be numbers."
         end
 
-        row = row.to_i
-        col = col.to_i
+        @row = @row.to_i
+        @col = @col.to_i
 
-        if !row.between?(0, 2) || !col.between?(0, 2)
+        if !@row.between?(0, 2) || !@col.between?(0, 2)
           raise ArgumentError, "Invalid input, coordinates start from (0,0) to (2,2)"
         end
 
-        if board.cell_at(@symbol, row, col) == true
+        if board.cell_at(@symbol, @row, @col) == true
           break
         end
 
