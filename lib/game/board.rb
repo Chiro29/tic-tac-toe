@@ -14,10 +14,7 @@ class Board
       false
     else
       @grid[row][column].value = symbol
-      if check_winner?(symbol, row, column) == true
-        puts "you won!"
-        display_board        
-      end
+      true
     end
   end
 
@@ -59,5 +56,9 @@ class Board
       puts cell_value.join("|")
       puts "-----------" unless row == @grid.last
     end
+  end
+
+  def check_tie?
+    @grid.all? {|row| row.all? {|cell| cell.occupied?}}
   end
 end

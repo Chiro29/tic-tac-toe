@@ -9,5 +9,4 @@ class Game
     @player2 = Player.new("Player 2 (O)", " O ")
     @current_player = @player1
   end
-
 end

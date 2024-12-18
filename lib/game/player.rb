@@ -32,7 +32,7 @@ class Player
           raise ArgumentError, "Invalid input, coordinates start from (0,0) to (2,2)"
         end
 
-        if board.cell_at(@symbol, row, col) != false
+        if board.cell_at(@symbol, row, col) == true
           break
         end
 
