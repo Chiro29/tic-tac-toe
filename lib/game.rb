@@ -10,12 +10,16 @@ class Game
     @current_player = @player1
   end
 
+  def switch_player
+    @current_player = @current_player == @player1 ? @player2 : @player1
+  end
+
   def play 
     loop do
       @board.display_board
-      @current_player.make_move(@board)
+      row, col = @current_player.make_move(@board)
       
-      if @board.check_winner?(@current_player.symbol, @current_player.row, @current_player.col)
+      if @board.check_winner?(@current_player.symbol, row, col)
         @board.display_board
         puts "#{@current_player.player} you won!!!"
         break
@@ -27,11 +31,7 @@ class Game
         break
       end
 
-      if @current_player == @player1
-        @current_player = @player2
-      else
-        @current_player = @player1
-      end
+      switch_player
     end
   end
 end
