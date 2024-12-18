@@ -10,7 +10,6 @@ class Player
 
   def make_move(board)
     loop do 
-      board.display_board
       puts "#{@player} enter coordinates (row,column), e.g. (1,2)"
       puts "Coordinates start from (0,0) to (2,2)"
       input = gets.chomp.strip
