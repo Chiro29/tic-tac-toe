@@ -1,3 +1,3 @@
 # Tic Tac Toe
 
-A brief description of what this project does and who it's for
+A project using Ruby to learn OOP, where two players can play tic tac toe.
