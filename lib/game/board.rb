@@ -1,4 +1,5 @@
 require_relative 'cell'
+require_relative 'player'
 
 class Board 
   attr_reader :grid
@@ -7,12 +8,16 @@ class Board
     @grid = Array.new(3) {Array.new(3) {Cell.new}}
   end
 
-  def cell_at(row, column, symbol)
+  def cell_at(symbol, row, column)
     if @grid[row][column].occupied? 
       puts "The cell is already occupied"
+      false
     else
       @grid[row][column].value = symbol
-      check_winner(symbol, row, column)
+      if check_winner?(symbol, row, column) == true
+        puts "you won!"
+        display_board        
+      end
     end
   end
 
@@ -24,8 +29,8 @@ class Board
   end
 
   def check_column?(symbol, column)
-    @grid[column].each do |cell|
-      return false unless cell.value == symbol
+    @grid.each do |row|
+      return false unless row[column].value == symbol 
     end
     true
   end
@@ -44,10 +49,8 @@ class Board
     true
   end
 
-  def check_winner(symbol, row, column)
-    if check_column?(symbol, column) || check_row?(symbol, row) || check_diagonal1?(symbol) ||check_diagonal2?(symbol)
-      puts "you won"
-    end
+  def check_winner?(symbol, row, column)
+    check_column?(symbol, column) || check_row?(symbol, row) || check_diagonal1?(symbol) ||check_diagonal2?(symbol)
   end
 
   def display_board
